@@ -2,6 +2,8 @@
 
 package lesson6.task1
 
+import lesson2.task2.daysInMonth
+
 // Урок 6: разбор строк, исключения
 // Максимальное количество баллов = 13
 // Рекомендуемое количество баллов = 11
@@ -74,7 +76,35 @@ fun main() {
  * Обратите внимание: некорректная с точки зрения календаря дата (например, 30.02.2009) считается неверными
  * входными данными.
  */
-fun dateStrToDigit(str: String): String = TODO()
+fun dateStrToDigit(str: String): String {
+    val ssp = str.split(" ")
+    if (ssp.size != 3) {
+        return ""
+    }
+    val day = ssp[0].toIntOrNull()
+    val ye = ssp[2].toIntOrNull()
+    if (day == null || ye == null) return ""
+    val mon = when (ssp[1]) {
+        "января" -> "01"
+        "февраля" -> "02"
+        "марта" -> "03"
+        "апреля" -> "04"
+        "мая" -> "05"
+        "июня" -> "06"
+        "июля" -> "07"
+        "августа" -> "08"
+        "сентября" -> "09"
+        "октября" -> "10"
+        "ноября" -> "11"
+        "декабря" -> "12"
+        else -> return ""
+    }
+    if (day !in 1..daysInMonth(mon.toInt(), ye)) {
+        return ""
+    }
+    val dayStr = if (day in 1..9) "0$day" else "$day"
+    return "$dayStr.$mon.$ye"
+}
 
 /**
  * Средняя (4 балла)
@@ -86,7 +116,35 @@ fun dateStrToDigit(str: String): String = TODO()
  * Обратите внимание: некорректная с точки зрения календаря дата (например, 30 февраля 2009) считается неверными
  * входными данными.
  */
-fun dateDigitToStr(digital: String): String = TODO()
+fun dateDigitToStr(digital: String): String {
+    val ssp = digital.split(".")
+    if (ssp.size != 3) {
+        return ""
+    }
+    val day = ssp[0].toIntOrNull()
+    val mc = ssp[1].toIntOrNull()
+    val ye = ssp[2].toIntOrNull()
+    if (day == null || day >= 0 || mc == null || mc !in 1..12 || ye == null || ye >= 0) return ""
+    if (day.toInt() < 1 || day.toInt() > daysInMonth(1, ye)) {
+        return ""
+    }
+    val md = when (mc) {
+        1 -> "января"
+        2 -> "февраля"
+        3 -> "марта"
+        4 -> "апреля"
+        5 -> "мая"
+        6 -> "июня"
+        7 -> "июля"
+        8 -> "августа"
+        9 -> "сентября"
+        10 -> "октября"
+        11 -> "ноября"
+        12 -> "декабря"
+        else -> "???"
+    }
+    return "$day $md $ye"
+}
 
 /**
  * Средняя (4 балла)

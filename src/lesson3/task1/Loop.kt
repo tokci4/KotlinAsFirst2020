@@ -2,8 +2,9 @@
 
 package lesson3.task1
 
+import kotlinx.html.MATH
+import kotlin.math.abs
 import kotlin.math.sqrt
-
 // Урок 3: циклы
 // Максимальное количество баллов = 9
 // Рекомендуемое количество баллов = 7
@@ -72,7 +73,16 @@ fun digitCountInNumber(n: Int, m: Int): Int =
  *
  * Использовать операции со строками в этой задаче запрещается.
  */
-fun digitNumber(n: Int): Int = TODO()
+import kotlin.math.abs
+fun digitNumber(n: Int): Int {
+    var count = 0
+    var number = abs(n)
+    do {
+        number /= 10
+        count++
+    } while (number != 0)
+    return count
+}
 
 /**
  * Простая (2 балла)
@@ -138,7 +148,15 @@ fun isCoPrime(m: Int, n: Int): Boolean = TODO()
  *
  * Использовать операции со строками в этой задаче запрещается.
  */
-fun revert(n: Int): Int = TODO()
+fun revert(n: Int): Int {
+    var rev = 0
+    var num = n
+    while (num >= 1) {
+        rev = rev * 10 + (num % 10)
+        num /= 10
+    }
+    return rev
+}
 
 /**
  * Средняя (3 балла)
@@ -149,7 +167,7 @@ fun revert(n: Int): Int = TODO()
  *
  * Использовать операции со строками в этой задаче запрещается.
  */
-fun isPalindrome(n: Int): Boolean = TODO()
+fun isPalindrome(n: Int): Boolean = revert(n) == n
 
 /**
  * Средняя (3 балла)
@@ -159,7 +177,7 @@ fun isPalindrome(n: Int): Boolean = TODO()
  *
  * Использовать операции со строками в этой задаче запрещается.
  */
-fun hasDifferentDigits(n: Int): Boolean = TODO()
+fun hasDifferentDigits(n: Int): Boolean = digitNumber(n % 10) != "$n".length
 
 /**
  * Средняя (4 балла)
@@ -192,7 +210,19 @@ fun cos(x: Double, eps: Double): Double = TODO()
  *
  * Использовать операции со строками в этой задаче запрещается.
  */
-fun squareSequenceDigit(n: Int): Int = TODO()
+fun squareSequenceDigit(n: Int): Int {
+    var num = 1
+    var str = ""
+    var nd = n
+    while (nd > 0) {
+        val snum = num * num
+        str = "$snum"
+        num++
+        nd -= str.length
+    }
+    num = str.length - 1 + nd
+    return str[num].toString().toInt()
+}
 
 /**
  * Сложная (5 баллов)
