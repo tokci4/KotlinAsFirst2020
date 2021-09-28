@@ -64,8 +64,7 @@ fun quadraticRootProduct(a: Double, b: Double, c: Double): Double {
  * Рассчитать время в секундах, прошедшее с начала суток (30035 в данном случае).
  */
 fun seconds(hours: Int, minutes: Int, seconds: Int): Int {
-    val a1 = hours * 3600 + minutes * 60 + seconds
-    return a1
+    return hours * 3600 + minutes * 60 + seconds
 
 
 }
@@ -140,8 +139,8 @@ fun travelMinutes(hoursDepart: Int, minutesDepart: Int, hoursArrive: Int, minute
  * Например, 100 рублей под 10% годовых превратятся в 133.1 рубля
  */
 fun accountInThreeYears(initial: Int, percent: Int): Double {
-    val b = initial
-    val a = b * (1 + percent / 100.0) * (1 + percent / 100.0) * (1 + percent / 100.0)
+    val b = (1 + percent / 100.0)
+    val a = initial * b * b * b
     return a
 
 }
@@ -152,9 +151,8 @@ fun accountInThreeYears(initial: Int, percent: Int): Double {
  * Необходимо вывести число, полученное из заданного перестановкой цифр в обратном порядке (например, 874).
  */
 fun numberRevert(number: Int): Int {
-    val s = number.toString()
-    val b = s.split("").reversed().joinToString("")
-    val a = b.toInt()
-    return a
-
+    val s = (number % 10)*100
+    val b = (number / 10 % 10)*10
+    val a = (number / 100 % 10)
+    return b + s + a
 }
