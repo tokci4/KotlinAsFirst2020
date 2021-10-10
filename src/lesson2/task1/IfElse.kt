@@ -106,7 +106,7 @@ fun whichRookThreatens(
     rookX2: Int, rookY2: Int
 ): Int {
     return when {
-        kingX == rookX1 || kingX == rookX2 && kingY == rookY1 || kingY == rookY2 -> 3
+        (kingX == rookX1 && kingY == rookY2) || (kingX == rookX2 && kingY == rookY1) || kingY == rookY2 -> 3
         kingX == rookX1 || kingY == rookY1 -> 1
         kingX == rookX2 || kingY == rookY2 -> 2
         else -> 0
@@ -138,10 +138,11 @@ fun rookOrBishopThreatens(
  */
 fun triangleKind(a: Double, b: Double, c: Double): Int {
     return when{
-        (c.pow(2) == a.pow(2) + b.pow(2) || b.pow(2) == c.pow(2) + a.pow(2) || a.pow(2) == b.pow(2) + c.pow(2)) && (c < b + a && b < c + a && a < c + b) -> 1
-        (c.pow(2) < a.pow(2) + b.pow(2) || b.pow(2) < c.pow(2) + a.pow(2) || a.pow(2) < b.pow(2) + c.pow(2)) && (c < b + a && b < c + a && a < c + b) -> 0
-        ((b.pow(2) == a.pow(2) + c.pow(2) && c.pow(2) == b.pow(2) + a.pow(2)) || (a.pow(2) == b.pow(2) + c.pow(2) && b.pow(2) == a.pow(2) + c.pow(2)) || (a.pow(2) == b.pow(2) + c.pow(2) && (c.pow(2) == a.pow(2) + b.pow(2)))) && (c < b + a && b < c + a && a < c + b) -> 2
-        else -> -1
+        a >= b + c || b >= a + c || c >= b + a -> -1
+        a.pow(2) == b.pow(2) + c.pow(2) || b.pow(2) == a.pow(2) + c.pow(2) || c.pow(2) == b.pow(2) + a.pow(2) -> 1
+        a.pow(2) + b.pow(2) < c.pow(2) -> 2
+        else -> 0
+
     }
 }
 
