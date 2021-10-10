@@ -4,6 +4,7 @@ package lesson2.task1
 
 import lesson1.task1.discriminant
 import kotlin.math.max
+import kotlin.math.pow
 import kotlin.math.sqrt
 
 // Урок 2: ветвления (здесь), логический тип (см. 2.2).
@@ -71,7 +72,7 @@ fun minBiRoot(a: Double, b: Double, c: Double): Double {
 fun ageDescription(age: Int): String{
     val k = age % 10
     return when{
-        (age > 109) && (age < 120) || (age > 9) && (age < 20) || (age > 190) || (k > 4) -> "$age лет"
+        (age > 109) && (age < 120) || (age >= 9) && (age <= 20) || (age > 190) || (k > 4) -> "$age лет"
         (k == 1) -> "$age год"
         else -> "$age года"
     }
@@ -103,8 +104,14 @@ fun whichRookThreatens(
     kingX: Int, kingY: Int,
     rookX1: Int, rookY1: Int,
     rookX2: Int, rookY2: Int
-): Int = TODO()
-
+): Int {
+    return when {
+        kingX == rookX1 || kingX == rookX2 && kingY == rookY1 || kingY == rookY2 -> 3
+        kingX == rookX1 || kingY == rookY1 -> 1
+        kingX == rookX2 || kingY == rookY2 -> 2
+        else -> 0
+    }
+}
 /**
  * Простая (2 балла)
  *
@@ -129,7 +136,14 @@ fun rookOrBishopThreatens(
  * прямоугольным (вернуть 1) или тупоугольным (вернуть 2).
  * Если такой треугольник не существует, вернуть -1.
  */
-fun triangleKind(a: Double, b: Double, c: Double): Int = TODO()
+fun triangleKind(a: Double, b: Double, c: Double): Int {
+    return when{
+        (c.pow(2) == a.pow(2) + b.pow(2) || b.pow(2) == c.pow(2) + a.pow(2) || a.pow(2) == b.pow(2) + c.pow(2)) && (c < b + a && b < c + a && a < c + b) -> 1
+        (c.pow(2) < a.pow(2) + b.pow(2) || b.pow(2) < c.pow(2) + a.pow(2) || a.pow(2) < b.pow(2) + c.pow(2)) && (c < b + a && b < c + a && a < c + b) -> 0
+        ((b.pow(2) == a.pow(2) + c.pow(2) && c.pow(2) == b.pow(2) + a.pow(2)) || (a.pow(2) == b.pow(2) + c.pow(2) && b.pow(2) == a.pow(2) + c.pow(2)) || (a.pow(2) == b.pow(2) + c.pow(2) && (c.pow(2) == a.pow(2) + b.pow(2)))) && (c < b + a && b < c + a && a < c + b) -> 2
+        else -> -1
+    }
+}
 
 /**
  * Средняя (3 балла)
@@ -140,14 +154,15 @@ fun triangleKind(a: Double, b: Double, c: Double): Int = TODO()
  * Если пересечения нет, вернуть -1.
  */
 fun segmentLength(a: Int, b: Int, c: Int, d: Int): Int{
-    val AB = (b - a)
-    val CD = (d - c)
+    val ab = b - a
+    val cd = d - c
     return when{
-        (a > c && b < d) -> AB
-        (c > a && d < b) -> CD
-        (a > c && a < d) -> d - a
-        (b > c && b < d) -> b -c
-        (a == d || b == c) -> 0
+        a > c && b < d -> ab
+        c > a && d < b -> cd
+        a > c && a < d -> d - a
+        b > c && b < d -> b -c
+        a == c && b == d -> ab
+        a == d || b == c -> 0
         else -> -1
     }
 }

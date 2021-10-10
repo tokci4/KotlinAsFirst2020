@@ -2,6 +2,8 @@
 
 package lesson3.task1
 
+import lesson1.task1.sqr
+import kotlin.math.min
 import kotlin.math.sqrt
 
 // Урок 3: циклы
@@ -72,7 +74,20 @@ fun digitCountInNumber(n: Int, m: Int): Int =
  *
  * Использовать операции со строками в этой задаче запрещается.
  */
-fun digitNumber(n: Int): Int = TODO()
+fun digitNumber(n: Int):Int {
+    var count = 0
+    var a = n
+    if (n == 0) return count + 1
+    else
+        while (a != 0) {
+            count += 1
+            a /= 10}
+    return count
+}
+
+
+
+
 
 /**
  * Простая (2 балла)
@@ -87,7 +102,12 @@ fun fib(n: Int): Int = TODO()
  *
  * Для заданного числа n > 1 найти минимальный делитель, превышающий 1
  */
-fun minDivisor(n: Int): Int = TODO()
+fun minDivisor(n: Int): Int{
+    for (i in 2..n) {
+        if (n % i == 0) return i
+    }
+    return n
+}
 
 /**
  * Простая (2 балла)
@@ -120,7 +140,16 @@ fun collatzSteps(x: Int): Int = TODO()
  * Для заданных чисел m и n найти наименьшее общее кратное, то есть,
  * минимальное число k, которое делится и на m и на n без остатка
  */
-fun lcm(m: Int, n: Int): Int = TODO()
+fun lcm(m: Int, n: Int): Int{
+    var i = min(m, n)
+    while (true){
+        if (i % m == 0 && i % n == 0){
+            break
+        }
+        i += 1
+    }
+    return i
+}
 
 /**
  * Средняя (3 балла)
@@ -138,7 +167,18 @@ fun isCoPrime(m: Int, n: Int): Boolean = TODO()
  *
  * Использовать операции со строками в этой задаче запрещается.
  */
-fun revert(n: Int): Int = TODO()
+fun revert(n: Int): Int{
+    var n1 = n
+    var n2 = 0
+    var d: Int
+    while (n1 > 0){
+        d = n1 % 10
+        n1 /= 10
+        n2 *= 10
+        n2 += d
+    }
+    return n2
+}
 
 /**
  * Средняя (3 балла)
