@@ -151,7 +151,7 @@ fun triangleKind(a: Double, b: Double, c: Double): Int {
  * Даны четыре точки на одной прямой: A, B, C и D.
  * Координаты точек a, b, c, d соответственно, b >= a, d >= c.
  * Найти длину пересечения отрезков AB и CD.
- * Если пересечения нет, вернуть -1.
+  * Если пересечения нет, вернуть -1.
  */
 fun segmentLength(a: Int, b: Int, c: Int, d: Int): Int{
     val ab = b - a
@@ -160,8 +160,9 @@ fun segmentLength(a: Int, b: Int, c: Int, d: Int): Int{
         a > c && b < d -> ab
         c > a && d < b -> cd
         a > c && a < d -> d - a
-        b > c && b < d -> b -c
+        b > c && b < d -> b - c
         a == c && b == d -> ab
+
         a == d || b == c -> 0
         else -> -1
     }
