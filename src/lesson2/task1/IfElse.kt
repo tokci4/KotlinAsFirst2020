@@ -129,7 +129,7 @@ fun rookOrBishopThreatens(
 ): Int = TODO()
 
 /**
- * Простая (2 балла)
+ *  Простая (2 балла)
  *
  * Треугольник задан длинами своих сторон a, b, c.
  * Проверить, является ли данный треугольник остроугольным (вернуть 0),
@@ -142,7 +142,6 @@ fun triangleKind(a: Double, b: Double, c: Double): Int {
         a.pow(2) == b.pow(2) + c.pow(2) || b.pow(2) == a.pow(2) + c.pow(2) || c.pow(2) == b.pow(2) + a.pow(2) -> 1
         a.pow(2) + b.pow(2) < c.pow(2) -> 2
         else -> 0
-
     }
 }
 
