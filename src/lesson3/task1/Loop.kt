@@ -2,8 +2,6 @@
 
 package lesson3.task1
 
-import lesson1.task1.sqr
-import kotlin.math.min
 import kotlin.math.sqrt
 
 // Урок 3: циклы
@@ -140,16 +138,10 @@ fun collatzSteps(x: Int): Int = TODO()
  * Для заданных чисел m и n найти наименьшее общее кратное, то есть,
  * минимальное число k, которое делится и на m и на n без остатка
  */
-fun lcm(m: Int, n: Int): Int{
-    var i = min(m, n)
-    while (true){
-        if (i % m == 0 && i % n == 0){
-            break
-        }
-        i += 1
-    }
-    return i
-}
+fun lcm(m: Int, n: Int): Int = TODO()
+
+
+
 
 /**
  * Средняя (3 балла)
@@ -232,7 +224,12 @@ fun cos(x: Double, eps: Double): Double = TODO()
  *
  * Использовать операции со строками в этой задаче запрещается.
  */
-fun squareSequenceDigit(n: Int): Int = TODO()
+fun squareSequenceDigit(n: Int): Int {
+    val list = mutableListOf<Int>()
+    for (i in 1..n)
+        list.add(i * i)
+    return list[n - 1]
+}
 
 /**
  * Сложная (5 баллов)

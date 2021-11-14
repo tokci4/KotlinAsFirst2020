@@ -69,14 +69,7 @@ fun minBiRoot(a: Double, b: Double, c: Double): Double {
  * Мой возраст. Для заданного 0 < n < 200, рассматриваемого как возраст человека,
  * вернуть строку вида: «21 год», «32 года», «12 лет».
  */
-fun ageDescription(age: Int): String{
-    val k = age % 10
-    return when{
-        (age > 109) && (age < 120) || (age >= 9) && (age <= 20) || (age > 190) || (k > 4) -> "$age лет"
-        (k == 1) -> "$age год"
-        else -> "$age года"
-    }
-}
+fun ageDescription(age: Int): String = TODO()
 
 /**
  * Простая (2 балла)
@@ -104,14 +97,7 @@ fun whichRookThreatens(
     kingX: Int, kingY: Int,
     rookX1: Int, rookY1: Int,
     rookX2: Int, rookY2: Int
-): Int {
-    return when {
-        (kingX == rookX1 && kingY == rookY2) || (kingX == rookX2 && kingY == rookY1) || kingY == rookY2 -> 3
-        kingX == rookX1 || kingY == rookY1 -> 1
-        kingX == rookX2 || kingY == rookY2 -> 2
-        else -> 0
-    }
-}
+): Int = TODO()
 /**
  * Простая (2 балла)
  *
@@ -136,14 +122,14 @@ fun rookOrBishopThreatens(
  * прямоугольным (вернуть 1) или тупоугольным (вернуть 2).
  * Если такой треугольник не существует, вернуть -1.
  */
-fun triangleKind(a: Double, b: Double, c: Double): Int {
-    return when{
+fun triangleKind(a: Double, b: Double, c: Double): Int =
+    when{
         a >= b + c || b >= a + c || c >= b + a -> -1
         a.pow(2.0) == b.pow(2.0) + c.pow(2.0) || b.pow(2.0) == a.pow(2.0) + c.pow(2.0) || c.pow(2.0) == b.pow(2.0) + a.pow(2.0) -> 1
         a.pow(2.0) + b.pow(2.0) < c.pow(2.0) -> 2
         else -> 0
     }
-}
+
 
 /**
  * Средняя (3 балла)
@@ -153,17 +139,5 @@ fun triangleKind(a: Double, b: Double, c: Double): Int {
  * Найти длину пересечения отрезков AB и CD.
   * Если пересечения нет, вернуть -1.
  */
-fun segmentLength(a: Int, b: Int, c: Int, d: Int): Int{
-    val ab = b - a
-    val cd = d - c
-    return when{
-        a > c && b < d -> ab
-        c > a && d < b -> cd
-        a > c && a < d -> d - a
-        b > c && b < d -> b - c
-        a == c && b == d -> ab
+fun segmentLength(a: Int, b: Int, c: Int, d: Int): Int = TODO()
 
-        a == d || b == c -> 0
-        else -> -1
-    }
-}
