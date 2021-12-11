@@ -101,7 +101,7 @@ fun fib(n: Int): Int = TODO()
  * Для заданного числа n > 1 найти минимальный делитель, превышающий 1
  */
 fun minDivisor(n: Int): Int{
-    for (i in 2..n) {
+    for (i in 2..sqrt(n.toDouble()).toInt()) {
         if (n % i == 0) return i
     }
     return n
@@ -162,8 +162,8 @@ fun isCoPrime(m: Int, n: Int): Boolean = TODO()
 fun revert(n: Int): Int{
     var n1 = n
     var n2 = 0
-    var d: Int
     while (n1 > 0){
+        var d: Int
         d = n1 % 10
         n1 /= 10
         n2 *= 10
@@ -224,13 +224,7 @@ fun cos(x: Double, eps: Double): Double = TODO()
  *
  * Использовать операции со строками в этой задаче запрещается.
  */
-fun squareSequenceDigit(n: Int): Int {
-    val list = mutableListOf<Int>()
-    for (i in 1..n)
-        list.add(i * i)
-    return list[n - 1]
-}
-
+fun squareSequenceDigit(n: Int): Int = TODO()
 /**
  * Сложная (5 баллов)
  *

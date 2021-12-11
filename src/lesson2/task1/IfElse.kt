@@ -125,7 +125,8 @@ fun rookOrBishopThreatens(
 fun triangleKind(a: Double, b: Double, c: Double): Int =
     when{
         a >= b + c || b >= a + c || c >= b + a -> -1
-        a.pow(2.0) == b.pow(2.0) + c.pow(2.0) || b.pow(2.0) == a.pow(2.0) + c.pow(2.0) || c.pow(2.0) == b.pow(2.0) + a.pow(2.0) -> 1
+        a.pow(2.0) == b.pow(2.0) + c.pow(2.0) || b.pow(2.0) == a.pow(2.0) + c.pow(2.0) || c.pow(2.0)
+                == b.pow(2.0) + a.pow(2.0) -> 1
         a.pow(2.0) + b.pow(2.0) < c.pow(2.0) -> 2
         else -> 0
     }
