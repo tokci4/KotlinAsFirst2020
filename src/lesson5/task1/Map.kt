@@ -169,7 +169,7 @@ fun mergePhoneBooks(mapA: Map<String, String>, mapB: Map<String, String>): Map<S
 fun averageStockPrice(stockPrices: List<Pair<String, Double>>): Map<String, Double> = TODO()
 
 /**
- * Средняя (4 балла)
+ *  Средняя (4 балла)
  *
  * Входными данными является ассоциативный массив
  * "название товара"-"пара (тип товара, цена товара)"
