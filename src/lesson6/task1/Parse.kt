@@ -3,6 +3,7 @@
 package lesson6.task1
 
 import lesson10.task1.parseExpr
+import java.lang.IndexOutOfBoundsException
 
 // Урок 6: разбор строк, исключения
 // Максимальное количество баллов = 13
@@ -184,17 +185,17 @@ fun mostExpensive(description: String): String {
     val des = description.replace(";", "", true)
     val strSplit = des.split(' ')
     var a = ""
-    var maxPrice = 0.0
-    if (strSplit.size <= 2)
-        return strSplit[0]
-    for(i in 1..strSplit.size - 2 step 2){
-        if (strSplit[i].toDouble() >= maxPrice){
-            maxPrice = strSplit[i].toDouble()
-            a = strSplit[i - 1]
+    var maxPrice = -1.0
+    try {
+        for (i in 0..strSplit.size - 2 step 2) {
+            if (strSplit[i + 1].toDouble() > maxPrice ) {
+                maxPrice = strSplit[i + 1].toDouble()
+                a = strSplit[i]
+            }
+
         }
-        if (strSplit[i + 2].toDouble() == strSplit[i].toDouble()){
-            a = strSplit[i - 1]
-        }
+    } catch (e: IndexOutOfBoundsException){
+        return ""
     }
     return a
 }
