@@ -170,7 +170,7 @@ fun firstDuplicateIndex(str: String): Int {
 
 
 /**
- *Сложная (6 баллов)
+ * Сложная (6 баллов)
  *
  * Строка содержит названия товаров и цены на них в формате вида
  * "Хлеб 39.9; Молоко 62; Курица 184.0; Конфеты 89.9".
@@ -187,7 +187,7 @@ fun mostExpensive(description: String): String {
     if (strSplit.size <= 2)
         return strSplit[0]
     for(i in 1..strSplit.size - 2 step 2){
-        val b = strSplit[i].toDouble()
+        val b = strSplit[i]
         if (strSplit[i + 2].toDouble() > strSplit[i].toDouble()){
             a = strSplit[i + 1]}
         if (strSplit[i + 2].toDouble() == strSplit[i].toDouble()){
