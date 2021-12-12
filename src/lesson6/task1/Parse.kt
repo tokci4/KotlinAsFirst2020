@@ -191,7 +191,7 @@ fun mostExpensive(description: String): String {
             a = strSplit[i - 1]
         } else a = strSplit[i + 1]
         if (strSplit[i + 2].toDouble() == strSplit[i].toDouble()){
-            a = strSplit[0]
+            a = strSplit[i - 1]
         }
     }
     return a

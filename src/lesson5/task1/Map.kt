@@ -177,7 +177,7 @@ fun averageStockPrice(stockPrices: List<Pair<String, Double>>): Map<String, Doub
  * Необходимо вернуть название товара заданного типа с минимальной стоимостью
  * или null в случае, если товаров такого типа нет.
  *
- * Например:
+ *  Например:
  *   findCheapestStuff(
  *     mapOf("Мария" to ("печенье" to 20.0), "Орео" to ("печенье" to 100.0)),
  *     "печенье"
