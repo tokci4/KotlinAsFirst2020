@@ -231,7 +231,14 @@ class Tests {
             "",
             findCheapestStuff(
                 mapOf("a" to ("" to 0.0), "" to ("a" to 0.0)),
-                "a")
+                "a"
+            )
+        )
+        assertEquals(
+            "a",
+            findCheapestStuff(
+                mapOf("" to ("a" to 0.0), "a" to ("" to Double.MAX_VALUE)),
+                "")
         )
     }
 
