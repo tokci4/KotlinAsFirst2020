@@ -188,7 +188,8 @@ fun mostExpensive(description: String): String {
         return strSplit[0]
     for(i in 1..strSplit.size - 2 step 2){
         if (strSplit[i + 2].toDouble() > strSplit[i].toDouble()){
-            a = strSplit[i + 1]}
+            a = strSplit[i + 1]
+        } else a = strSplit[i - 1]
         if (strSplit[i + 2].toDouble() == strSplit[i].toDouble()){
             a = strSplit[0]
         }
