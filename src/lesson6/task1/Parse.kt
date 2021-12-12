@@ -187,7 +187,7 @@ fun mostExpensive(description: String): String {
     if (strSplit.size <= 2)
         return strSplit[0]
     for(i in 1..strSplit.size - 2 step 2){
-        val b = strSplit[i]
+        val b = strSplit[i].toDouble()
         val str = "Any good with price $b"
         if (strSplit[i + 2].toDouble() > strSplit[i].toDouble()){
             a = strSplit[i + 1]}
