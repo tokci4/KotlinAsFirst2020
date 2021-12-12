@@ -184,12 +184,14 @@ fun mostExpensive(description: String): String {
     val des = description.replace(";", "", true)
     val strSplit = des.split(' ')
     var a = ""
+    var maxPrice = 0.0
     if (strSplit.size <= 2)
         return strSplit[0]
     for(i in 1..strSplit.size - 2 step 2){
-        if (strSplit[i].toDouble() > strSplit[i + 2].toDouble()){
+        if (strSplit[i].toDouble() > maxPrice){
+            maxPrice = strSplit[i].toDouble()
             a = strSplit[i - 1]
-        } else a = strSplit[i + 1]
+        }
         if (strSplit[i + 2].toDouble() == strSplit[i].toDouble()){
             a = strSplit[i - 1]
         }
