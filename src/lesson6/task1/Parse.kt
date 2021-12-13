@@ -178,7 +178,7 @@ fun firstDuplicateIndex(str: String): Int {
  * То есть, название товара отделено от цены пробелом,
  * а цена отделена от названия следующего товара точкой с запятой и пробелом.
  * Вернуть название самого дорогого товара в списке (в примере это Курица),
- * или пустую строку при нарушении формата строки.
+ * или  пустую строку при нарушении формата строки.
  * Все цены должны быть больше нуля либо равны нулю.
  */
 fun mostExpensive(description: String): String {
@@ -192,7 +192,6 @@ fun mostExpensive(description: String): String {
                 maxPrice = strSplit[i + 1].toDouble()
                 a = strSplit[i]
             }
-
         }
     } catch (e: IndexOutOfBoundsException){
         return ""

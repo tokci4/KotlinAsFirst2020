@@ -3,6 +3,7 @@
 package lesson7.task1
 
 import java.io.File
+import kotlin.math.max
 
 // Урок 7: работа с файлами
 // Урок интегральный, поэтому его задачи имеют сильно увеличенную стоимость
@@ -63,9 +64,15 @@ fun alignFile(inputName: String, lineLength: Int, outputName: String) {
  * Подчёркивание в середине и/или в конце строк значения не имеет.
  */
 fun deleteMarked(inputName: String, outputName: String) {
-    TODO()
+    File(outputName).bufferedWriter().use {
+        for (stroki in File(inputName).readLines()){
+            if(stroki.first() != '_' || stroki.isEmpty()){
+                it.write(stroki)
+                it.newLine()
+            }
+        }
+    }
 }
-
 /**
  * Средняя (14 баллов)
  *
@@ -75,7 +82,18 @@ fun deleteMarked(inputName: String, outputName: String) {
  * Регистр букв игнорировать, то есть буквы е и Е считать одинаковыми.
  *
  */
-fun countSubstrings(inputName: String, substrings: List<String>): Map<String, Int> = TODO()
+fun countSubstrings(inputName: String, substrings: List<String>): Map<String, Int> {
+    val map = mutableMapOf<String, Int>()
+    val txt = File(inputName).bufferedReader().readText().lowercase()
+    for (stroki in substrings){
+        var k = 0
+        for (i in txt.indices)
+            if (txt.startsWith(stroki.lowercase(), i))
+                k++
+        map[stroki] = k
+    }
+    return map
+}
 
 
 /**
@@ -94,7 +112,6 @@ fun countSubstrings(inputName: String, substrings: List<String>): Map<String, In
 fun sibilants(inputName: String, outputName: String) {
     TODO()
 }
-
 /**
  * Средняя (15 баллов)
  *
@@ -233,8 +250,34 @@ fun transliterate(inputName: String, dictionary: Map<Char, String>, outputName: 
  * Обратите внимание: данная функция не имеет возвращаемого значения
  */
 fun chooseLongestChaoticWord(inputName: String, outputName: String) {
-    TODO()
+    File(outputName).bufferedWriter().use {
+        var str = ""
+        var k = 0
+        val txt = File(inputName).readLines()
+
+
+        for (stroki in txt){
+            if (stroki.length > k){
+                k = stroki.length
+                if (stroki.length == k){
+                    str = stroki
+                    for (char in txt.toString().lowercase()) {
+                        var i = 0
+                        if (char in txt.toString().lowercase()){
+                            i++
+                            if (i == 1)
+                                it.write(str + ", " )
+                        }
+                    }
+                }
+            }
+        }
+    }
 }
+
+
+
+
 
 /**
  * Сложная (22 балла)
