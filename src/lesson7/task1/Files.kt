@@ -92,9 +92,39 @@ fun countSubstrings(inputName: String, substrings: List<String>): Map<String, In
  *
  */
 fun sibilants(inputName: String, outputName: String) {
-    TODO()
-}
+    val read = File(inputName).bufferedReader()
+    val writer = File(outputName).bufferedWriter()
+    for (line in read.lines()) {
+        val charArray = line.toCharArray()
+        for (i in charArray.indices) {
+            if (i == charArray.lastIndex) break
+            if (Regex("[жшчщ]", RegexOption.IGNORE_CASE).matches(charArray[i].toString())) {
+                var needToUpperCase = false
+                val nextChar = charArray[i + 1].toLowerCase()
+                if (nextChar == 'ы') {
+                    needToUpperCase = charArray[i + 1].isUpperCase()
+                    charArray[i + 1] = 'и'
+                }
+                if (nextChar == 'я') {
+                    needToUpperCase = charArray[i + 1].isUpperCase()
+                    charArray[i + 1] = 'а'
+                }
+                if (nextChar == 'ю') {
+                    needToUpperCase = charArray[i + 1].isUpperCase()
+                    charArray[i + 1] = 'у'
+                }
 
+                if (needToUpperCase) {
+                    charArray[i + 1] = charArray[i + 1].toUpperCase()
+                }
+            }
+        }
+
+        writer.write(String(charArray))
+        writer.newLine()
+    }
+    writer.close()
+}
 /**
  * Средняя (15 баллов)
  *
@@ -144,7 +174,40 @@ fun centerFile(inputName: String, outputName: String) {
  * 8) Если входной файл удовлетворяет требованиям 1-7, то он должен быть в точности идентичен выходному файлу
  */
 fun alignFileByWidth(inputName: String, outputName: String) {
-    TODO()
+    val lR = File(inputName).readLines()
+    val lin = lR.map { it.trim().split(Regex("\\s+")) }
+    val len = if (lin.isNotEmpty()) {
+        lin.maxOf { it.joinToString(" ").length }
+    } else 0
+    val writer = File(outputName).bufferedWriter()
+    for (line in lin) {
+        if (line.isEmpty()) {
+            writer.newLine()
+        } else if (line.size == 1) {
+            writer.write(line[0])
+            writer.newLine()
+        } else {
+            var n = 0
+            for (word in line) {
+                n += word.length
+            }
+            val spaces = (len - n) / (line.size - 1)
+            val mod = (len - n) % (line.size - 1)
+            val answer = StringBuilder()
+            for (i in 0 until mod) {
+                answer.append(line[i])
+                answer.append(" ".repeat(spaces + 1))
+            }
+            for (i in mod..line.size - 2) {
+                answer.append(line[i])
+                answer.append(" ".repeat(spaces))
+            }
+            answer.append(line[line.size - 1])
+            writer.write(answer.toString())
+            writer.newLine()
+        }
+    }
+    writer.close()
 }
 
 /**
