@@ -187,12 +187,14 @@ fun mostExpensive(description: String): String {
     var a = ""
     var maxPrice = -1.0
     try {
-        for (i in 0..strSplit.size - 2 step 2) {
-            if (strSplit[i + 1].toDouble() > maxPrice ) {
-                maxPrice = strSplit[i + 1].toDouble()
-                a = strSplit[i]
+        if(Regex("""[А-Яа-яa-zA-Z]+\s\d+(.\d+)?(;\s[А-Яа-яa-zA-Z]+\s\d+(.\d+)?)*""").matches(description)){
+            for (i in 0..strSplit.size - 2 step 2) {
+                if (strSplit[i + 1].toDouble() > maxPrice ) {
+                    maxPrice = strSplit[i + 1].toDouble()
+                    a = strSplit[i]
+                }
             }
-        }
+        } else return ""
     } catch (e: IndexOutOfBoundsException){
         return ""
     }
