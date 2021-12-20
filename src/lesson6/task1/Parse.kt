@@ -182,9 +182,9 @@ fun mostExpensive(description: String): String {
     val strSplit = des.split(' ')
     var a = ""
     var maxPrice = -1.0
-    if(Regex("""[А-Яа-яa-zA-Z0-9~\\!}{.<>,?'";:\[\]@=_)(|`№#$%^/&*+-]+\s\d+(.\d+)?(;\s[А-Яа-яa-zA-Z0-9~\\!}{.<>,?'";:\[\]@=_)(|`№#$%^/&*+-]+\s\d+(.\d+)?)*""").matches(description)) {
+    if(Regex("""[А-Яа-я]*\w*.*\s\d+(.\d+)?(;\s[А-Яа-я]*\w*.*\s\d+(.\d+)?)*""").matches(description)) {
         for (i in 0..strSplit.size - 1 step 2) {
-            if (strSplit[i + 1].toDouble() > maxPrice) {
+            if (strSplit[i + 1].toDouble() > maxPrice && strSplit[i + 1].toDouble() >= 0) {
                 maxPrice = strSplit[i + 1].toDouble()
                 a = strSplit[i]}
         }
