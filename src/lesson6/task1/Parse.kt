@@ -156,18 +156,14 @@ fun firstDuplicateIndex(str: String): Int {
     val a = str.lowercase()
     val strSplit = a.split(' ')
     var x = 0
-    for(i in 0..strSplit.size - 2) {
-        if (strSplit[i] == strSplit[i + 1]){
+    for (i in 0..strSplit.size - 2) {
+        if (strSplit[i] == strSplit[i + 1]) {
             return x
         }
         x = x + strSplit[i].length + 1
     }
     return -1
 }
-
-
-
-
 
 
 /**
@@ -186,20 +182,17 @@ fun mostExpensive(description: String): String {
     val strSplit = des.split(' ')
     var a = ""
     var maxPrice = -1.0
-    try {
-        if(Regex("""[А-Яа-яa-zA-Z0-9~\\!}{.<>,?'";:\[\]@=_)(|`№#$%^/&*+-]+\s\d+(.\d+)?(;\s[А-Яа-яa-zA-Z0-9~\\!}{.<>,?'";:\[\]@=_)(|`№#$%^/&*+-]+\s\d+(.\d+)?)*""").matches(description)) {
-            for (i in 0..strSplit.size - 2 step 2) {
-                if (strSplit[i + 1].toDouble() > maxPrice ) {
-                    maxPrice = strSplit[i + 1].toDouble()
-                    a = strSplit[i]
-                }
-            }
-        } else return ""
-    } catch (e: IndexOutOfBoundsException){
-        return ""
-    }
+    if(Regex("""[А-Яа-яa-zA-Z0-9~\\!}{.<>,?'";:\[\]@=_)(|`№#$%^/&*+-]+\s\d+(.\d+)?(;\s[А-Яа-яa-zA-Z0-9~\\!}{.<>,?'";:\[\]@=_)(|`№#$%^/&*+-]+\s\d+(.\d+)?)*""").matches(description)) {
+        for (i in 0..strSplit.size - 1 step 2) {
+            if (strSplit[i + 1].toDouble() > maxPrice) {
+                maxPrice = strSplit[i + 1].toDouble()
+                a = strSplit[i]}
+        }
+    } else return ""
     return a
 }
+
+
 
 /**
  * Сложная (6 баллов)
